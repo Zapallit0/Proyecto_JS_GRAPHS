@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <script type="text/javascript" src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kablammo&display=swap" rel="stylesheet">
+  <title>Document</title>
+</head>
+<body>
+  <header>
+    <h1>Nuevas Rutas Pandemia</h1>
+  </header>
+  <div class="Rutas">
+      <form>
+        <label for="nombres">Selecciona dos nombres:</label>
+        <select id="distrito1">
+          <option value="Juan">Juan</option>
+          <option value="Pedro">Pedro</option>
+          <option value="María">María</option>
+          <option value="Ana">Ana</option>
+        </select>
+        <label for="nombres">Selecciona dos nombres:</label>
+        <select id="distrito2">
+          <option value="Juan">Juan</option>
+          <option value="Pedro">Pedro</option>
+          <option value="María">María</option>
+          <option value="Ana">Ana</option>
+        </select>
+        <button id="btnEnviar">Enviar</button>
+      </form>
+      
+      <div id="distrito1"></div>
+      <div id="distrito2"></div>
+    <script src="script.js"></script>  
+    <div id="mynetwork"></div>
+  </div>
+
+</body>
+</html>
