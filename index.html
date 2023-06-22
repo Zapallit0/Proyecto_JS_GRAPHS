@@ -16,29 +16,114 @@
   </header>
   <div class="Rutas">
       <form>
-        <label for="nombres">Selecciona dos nombres:</label>
+        <label for="nombres">Selecciona Distrito de partida</label>
         <select id="distrito1">
-          <option value="Juan">Juan</option>
-          <option value="Pedro">Pedro</option>
-          <option value="María">María</option>
-          <option value="Ana">Ana</option>
+          <option value="0">Selecciona un distrito</option>
+          <option value="1">Aeropuerto Jorge Chavez Callao</option>
+          <option value="2">Distrito Lima Metropolitana</option>
+          <option value="3">Distrito San Martin de Porres</option>
+          <option value="4">Distrito Los Olivos</option>
+          <option value="5">Distrito Independencia</option>
+          <option value="6">Distrito Comas</option>
+          <option value="7">Distrito Puente Piedra</option>
+          <option value="8">Distrito Carabayllo</option>
+          <option value="9">Distrito Ancon</option>
+          <option value="10">Distrito Santa Rosa</option>
+          <option value="11">Distrito San Juan de Lurigancho</option>
+          <option value="12">Distrito Chosica</option>
+          <option value="13">Distrito El Agustino</option>
+          <option value="14">Distrito Santa Anita</option>
+          <option value="15">Distrito Ate</option>
+          <option value="16">Distrito La Molina</option>
+          <option value="17">Distrito Cieneguilla</option>
+          <option value="18">Distrito Rimac</option>
+          <option value="19">Distrito Breña</option>
+          <option value="20">Distrito Pueblo Libre</option>
+          <option value="21">Distrito Jesus Maria</option>
+          <option value="22">Distrito La Victoria</option>
+          <option value="23">Distrito Lince</option>
+          <option value="24">Distrito Magdalena</option>
+          <option value="25">Distrito San Isidro</option>
+          <option value="26">Distrito San Borja</option>
+          <option value="27">Distrito Surquillo</option>
+          <option value="28">Distrito Miraflores</option>
+          <option value="29">Distrito Chaclacayo</option>
+          <option value="30">Distrito Barranco</option>
+          <option value="31">Distrito Santiago de Surco</option>
+          <option value="32">Distrito Chorrillos</option>
+          <option value="33">Distrito San Juan de Miraflores</option>
+          <option value="34">Distrito Villa el Salvador</option>
+          <option value="35">Distrito Villa Maria del Triunfo</option>
+          <option value="36">Distrito Pachacamac</option>
+          <option value="37">Distrito Lurin</option>
+          <option value="38">Distrito Punta Hermosa</option>
+          <option value="39">Distrito Punta Negra</option>
+          <option value="40">Distrito San Bartolo</option>
+          <option value="41">Distrito Santa Marira del Mar</option>
+          <option value="42">Distrito Pucusana</option>
+          <option value="43">Distrito San Miguel</option>
+          <option value="44">Distrito San Luis</option>
+          <option value="45">Distrito Callao</option>
         </select>
-        <label for="nombres">Selecciona dos nombres:</label>
+        <label for="nombres">Selecciona Distrito final</label>
         <select id="distrito2">
-          <option value="Juan">Juan</option>
-          <option value="Pedro">Pedro</option>
-          <option value="María">María</option>
-          <option value="Ana">Ana</option>
+          <option value="0">Selecciona un distrito</option>
+          <option value="1">Aeropuerto Jorge Chavez Callao</option>
+          <option value="2">Distrito Lima Metropolitana</option>
+          <option value="3">Distrito San Martin de Porres</option>
+          <option value="4">Distrito Los Olivos</option>
+          <option value="5">Distrito Independencia</option>
+          <option value="6">Distrito Comas</option>
+          <option value="7">Distrito Puente Piedra</option>
+          <option value="8">Distrito Carabayllo</option>
+          <option value="9">Distrito Ancon</option>
+          <option value="10">Distrito Santa Rosa</option>
+          <option value="11">Distrito San Juan de Lurigancho</option>
+          <option value="12">Distrito Chosica</option>
+          <option value="13">Distrito El Agustino</option>
+          <option value="14">Distrito Santa Anita</option>
+          <option value="15">Distrito Ate</option>
+          <option value="16">Distrito La Molina</option>
+          <option value="17">Distrito Cieneguilla</option>
+          <option value="18">Distrito Rimac</option>
+          <option value="19">Distrito Breña</option>
+          <option value="20">Distrito Pueblo Libre</option>
+          <option value="21">Distrito Jesus Maria</option>
+          <option value="22">Distrito La Victoria</option>
+          <option value="23">Distrito Lince</option>
+          <option value="24">Distrito Magdalena</option>
+          <option value="25">Distrito San Isidro</option>
+          <option value="26">Distrito San Borja</option>
+          <option value="27">Distrito Surquillo</option>
+          <option value="28">Distrito Miraflores</option>
+          <option value="29">Distrito Chaclacayo</option>
+          <option value="30">Distrito Barranco</option>
+          <option value="31">Distrito Santiago de Surco</option>
+          <option value="32">Distrito Chorrillos</option>
+          <option value="33">Distrito San Juan de Miraflores</option>
+          <option value="34">Distrito Villa el Salvador</option>
+          <option value="35">Distrito Villa Maria del Triunfo</option>
+          <option value="36">Distrito Pachacamac</option>
+          <option value="37">Distrito Lurin</option>
+          <option value="38">Distrito Punta Hermosa</option>
+          <option value="39">Distrito Punta Negra</option>
+          <option value="40">Distrito San Bartolo</option>
+          <option value="41">Distrito Santa Marira del Mar</option>
+          <option value="42">Distrito Pucusana</option>
+          <option value="43">Distrito San Miguel</option>
+          <option value="44">Distrito San Luis</option>
+          <option value="45">Distrito Callao</option>
         </select>
-        <button id="btnEnviar">Enviar</button>
+        <span id="mensaje" style="color: red;"></span>
+        <button type="button" id="btnEnviar" onclick="obtenerSeleccion()" >Enviar</button>
       </form>
-      
+    
       <div id="distrito1"></div>
       <div id="distrito2"></div>
-    <script src="script.js"></script>  
-    <div id="mynetwork"></div>
-    <div id="ruta"></div>
+      <div id="mynetwork"></div>
+      <div id="ruta" hidden>UwU</div>
   </div>
-
+    <script src="script.js"></script>  
+  
 </body>
 </html>

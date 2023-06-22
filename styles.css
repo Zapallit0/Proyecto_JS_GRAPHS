@@ -45,6 +45,10 @@ form button{
     margin-top: 40px;
 }
 
+.Rutas span{
+    font-weight:bolder ;
+}
+
 #mynetwork {
     width: 80vw;
     height: 85vh;

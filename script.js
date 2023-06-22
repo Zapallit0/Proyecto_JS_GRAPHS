@@ -414,7 +414,7 @@ nodosDistritos=[
   },
   ];
 
-  relacionesDistritos = [
+relacionesDistritos = [
     //Callao=45
     { from: 45, to:1 , label: "calle 0 av ",font:{align:"middle"},length:500},
     { from: 1, to:45 , label: "calle 0 av ",font:{align:"middle"},length:500},
@@ -610,489 +610,468 @@ nodosDistritos=[
     { from: 11, to:12 , label: "calle 0 av ",font:{align:"middle"},length:500},
     { from: 12, to:15 , label: "calle 0 av ",font:{align:"middle"},length:500},
     { from: 15, to:12 , label: "calle 0 av ",font:{align:"middle"},length:500},
-  ]
+]
 
-  function encontrarCamino(edges, inicio, destino) {
-    // Crear un diccionario para almacenar las relaciones entre los nodos
-    const grafo = {};
-    for (const edge of edges) {
-      const { from, to } = edge;
-      if (!grafo[from]) {
-        grafo[from] = [];
-      }
-      grafo[from].push(to);
+function encontrarCamino(edges, inicio, destino) {
+  const grafo = {};
+  for (const edge of edges) {
+    const { from, to } = edge;
+    if (!grafo[from]) {
+      grafo[from] = [];
     }
-  
-    // Realizar una búsqueda en amplitud (BFS) para encontrar el camino
-    const cola = [[inicio]];
-    while (cola.length > 0) {
-      const camino = cola.shift();
-      const nodoActual = camino[camino.length - 1];
-      if (nodoActual === destino) {
-        return camino;
-      }
-      const vecinos = grafo[nodoActual];
-      if (vecinos) {
-        for (const vecino of vecinos) {
-          if (!camino.includes(vecino)) {
-            cola.push([...camino, vecino]);
-          }
+    grafo[from].push(to);
+  }
+
+  const cola = [[inicio]];
+
+  while (cola.length > 0) {
+    const camino = cola.shift();
+    const nodoActual = camino[camino.length - 1];
+
+    if (nodoActual === destino) {
+      return camino;
+    }
+
+    const vecinos = grafo[nodoActual];
+    if (vecinos) {
+      for (const vecino of vecinos) {
+        if (!camino.includes(vecino)) {
+          cola.push([...camino, vecino]);
         }
       }
     }
-  
-    // Si no se encuentra un camino, retornar null
-    return null;
   }
-  const inicio = 23;
-  const destino = 10;
-  const camino = encontrarCamino(relacionesDistritos, inicio, destino);
-  console.log(camino);
 
-function DibujarRuta(distrito1, distrito2, distritos, relaciones){
-  let rutapedido=encontrarCamino(distrito1,distrito2,relaciones)
-  var DIR = "img/";
-  nodes=[];
-  edges=[]
-  for(let i=0; i<rutapedido.length; i++){
-    let location =distritos[i]
-    nodes.push(location)
-    
-  }
-  let contenedor =document.getElementById("ruta")
-  var data = {
-    nodes: nodes,
-    edges: edges,
-  };
-  var options = {
-    nodes: {
-      length: LENGTH_MAIN,
-      width: WIDTH_SCALE * 6,
-      borderWidth: 2,
-      borderWidthSelected: 8,
-      size: 100,
-      color: {
-        border: "white",
-        background: "black",
-        highlight: {
-          border: "black",
-          background: "white",
-        },
-        hover: {
-          border: "orange",
-          background: "grey",
-        },
-      },
-      font: { color: "#eeeeee" },
-      shapeProperties: {
-        useBorderWithImage: true,
-      },
-    },
-    edges: {
-      color: "lightgray",
-    },
-  };
-  network = new vis.Network(container, data, options);
+  return null;
 }
 
-window.addEventListener("load", () => {
-  DibujarRuta();
-});
-
+function obtenerSeleccion() {
+  // Obtener el elemento select por su id
+  const selectDistrito1 = document.getElementById('distrito1');
+  const selectDistrito2 = document.getElementById('distrito2');
+  // Obtener el valor seleccionado
+  const mensaje = document.getElementById('mensaje');
+  const valorSeleccionado1 = selectDistrito1.value;
+  const valorSeleccionado2 = selectDistrito2.value;
+  // Mostrar el valor seleccionado en la consola
+  if(valorSeleccionado1==valorSeleccionado2){
+    mensaje.textContent = 'Seleciones distritos diferentes';
+    mensaje.style.display = 'block';
+    const div = document.getElementById('mynetwork');
+    div.hidden = false;
+  }
+  else if(valorSeleccionado1==0 || valorSeleccionado2==0){
+    mensaje.textContent = 'Tiene que selecionar 2 distritos';
+    mensaje.style.display = 'block';
+    const div = document.getElementById('mynetwork');
+    div.hidden = false;
+  }
+  else{
+    mensaje.textContent =''
+    const div = document.getElementById('mynetwork');
+    div.hidden = true;
+    const div2=document.getElementById('ruta');
+    div2.hidden = false;   
+    xd=encontrarCamino(relacionesDistritos,valorSeleccionado1,valorSeleccionado2)
+    console.log(xd)
+  }
+}
 
 function draw1() {
   var DIR = "img/";
-  nodes = [
-    {
-        id: 1,
-        shape: "circularImage",
-        image: DIR + "JCHAVEZ.jpg",
-        size:40,
-        label: "Aeropuerto \n Jorge Chavez \n Callao",
-        shapeProperties: { useImageSize: false },
-    },
-    { 
-        id: 2, 
-        shape: "circularImage", 
-        image: DIR + "Lima.jpg",
-        size:40,
-        label:"Distrito \n Lima Metropolitana",
-        shapeProperties: { useImageSize: false }, 
-    },
-    {
-      id: 3,
-      shape: "circularImage",
-      image: DIR + "SanMartindePorres.jpg",
-      label: "Distrito \n San Martin de Porres",
-      shapeProperties: { useImageSize: false },
-      size: 40,
-    },
-    {
-      id: 4,
-      shape: "circularImage",
-      image: DIR + "LosOlivos.jpg",
-      label: "Distrito \n Los Olivos",
-      shapeProperties: { useImageSize: false },
-      size: 40,
-    },
-    { 
-      id: 5, 
-      shape: "circularImage",
-      image: DIR + "Independencia.jpg",
-      label: "Distrito \n Independencia", 
-      shapeProperties: { useImageSize: false },
-      size: 40,
-    },
-    { 
-      id: 6, shape: "circularImage", 
-      image: DIR + "Comas.jpg",
-      label: "Distrito \n Comas", 
-      shapeProperties: { useImageSize: false },
-      size: 40,
+  nodes = nodosDistritos
+  // [
+  //   {
+  //       id: 1,
+  //       shape: "circularImage",
+  //       image: DIR + "JCHAVEZ.jpg",
+  //       size:40,
+  //       label: "Aeropuerto \n Jorge Chavez \n Callao",
+  //       shapeProperties: { useImageSize: false },
+  //   },
+  //   { 
+  //       id: 2, 
+  //       shape: "circularImage", 
+  //       image: DIR + "Lima.jpg",
+  //       size:40,
+  //       label:"Distrito \n Lima Metropolitana",
+  //       shapeProperties: { useImageSize: false }, 
+  //   },
+  //   {
+  //     id: 3,
+  //     shape: "circularImage",
+  //     image: DIR + "SanMartindePorres.jpg",
+  //     label: "Distrito \n San Martin de Porres",
+  //     shapeProperties: { useImageSize: false },
+  //     size: 40,
+  //   },
+  //   {
+  //     id: 4,
+  //     shape: "circularImage",
+  //     image: DIR + "LosOlivos.jpg",
+  //     label: "Distrito \n Los Olivos",
+  //     shapeProperties: { useImageSize: false },
+  //     size: 40,
+  //   },
+  //   { 
+  //     id: 5, 
+  //     shape: "circularImage",
+  //     image: DIR + "Independencia.jpg",
+  //     label: "Distrito \n Independencia", 
+  //     shapeProperties: { useImageSize: false },
+  //     size: 40,
+  //   },
+  //   { 
+  //     id: 6, shape: "circularImage", 
+  //     image: DIR + "Comas.jpg",
+  //     label: "Distrito \n Comas", 
+  //     shapeProperties: { useImageSize: false },
+  //     size: 40,
        
-    },
-    { 
-      id: 7, shape: "circularImage", 
-      image: DIR + "PuentePiedra.jpg" ,
-      label: "Distrito \n Puente Piedra", 
-      shapeProperties: { useImageSize: false },
-      size: 40,
-    },
-    { 
-      id: 8, 
-      shape: "circularImage", 
-      image: DIR + "Carabayllo.jpg", 
-      label: "Distrito \n Carabayllo", 
-      shapeProperties: { useImageSize: false },
-      size: 40,
-    },
-    {
-      id: 9,
-      shape: "circularImage",
-      image: DIR + "Ancon.jpg",
-      // label: "useImageSize + imagePadding:15",
-      label: "Distrito \n Ancon", 
-      shapeProperties: { useImageSize: false },
-      size: 40,
-    },
-    { 
-      id: 10,
-      shape: "circularImage", 
-      image: DIR + "SantaRosa.jpg", 
-      label: "Distrito \n Santa Rosa", 
-      shapeProperties: { useImageSize: false },
-      size: 40,
-    },
-    { 
-      id: 11,
-      shape: "circularImage",
-      image: DIR + "SanJuandeLurigancho.jpg",
-      label: "Distrito \n San Juan de Lurigancho", 
-      shapeProperties: { useImageSize: false },
-      size: 40,
-    },
-    { 
-      id: 12, 
-      shape: "circularImage", 
-      image: DIR + "Chosica.jpg",
-      label: "Distrito \n Chosica", 
-      shapeProperties: { useImageSize: false },
-      size: 40, },
-    { 
-      id: 13,
-      shape: "circularImage",
-      image: DIR + "ElAgustino.jpg", 
-      label: "Distrito \n El Agustino", 
-      shapeProperties: { useImageSize: false },
-      size: 40 
-    },
-    { id: 14,
-      shape: "circularImage",
-      image: DIR + "SantaAnita.jpg",
-      label: "Distrito \n SantaAnita", 
-      shapeProperties: { useImageSize: false },
-      size: 40 
-    },
-    {
-      id: 15,
-      shape: "circularImage",
-      image: DIR + "Ate.jpg",
-      label: "Distrito \n Ate",
-      shapeProperties: { useImageSize: false },
-      size: 40 
-    },
-    {
-      id: 16,
-      shape: "circularImage",
-      image: DIR + "LaMolina.jpg",
-      // brokenImage: DIR + "9.png",
-      label: "Distrito \n La Molina",
-      shapeProperties: { useImageSize: false },
-      size: 40 
-    },
-    {
-      id: 17,
-      shape: "circularImage",
-      image: DIR + "Cieneguilla.jpg",
-        // brokenImage: DIR + "9.png",
-      label: "Distrito \n Cieneguilla",
-      shapeProperties: { useImageSize: false },
-      size: 40 
-    },
-    {
-      id: 18,
-      shape: "circularImage",
-      image: DIR + "Rimac.jpg",
-      // brokenImage: DIR + "9.png",
-      label: "Distrito \n Rimac",
-      shapeProperties: { useImageSize: false },
-      size: 40 
-    },
-    {
-      id: 19,
-      shape: "circularImage",
-      image: DIR + "Breña.jpg",
-      // brokenImage: DIR + "9.png",
-      label: "Distrito \n Breña",
-      shapeProperties: { useImageSize: false },
-      size: 40 
-    },
-    {
-      id: 20,
-      shape: "circularImage",
-      image: DIR + "PuebloLibre.jpg",
-        // brokenImage: DIR + "9.png",
-      label: "Distrito \n Pueblo Libre",
-      shapeProperties: { useImageSize: false },
-      size: 40 
-    },
-    {
-      id: 21,
-      shape: "circularImage",
-      image: DIR + "JesusMaria.jpg",
-        // brokenImage: DIR + "9.png",
-      label: "Distrito \n Jesus Maria",
-      shapeProperties: { useImageSize: false },
-      size: 40 
-    },
-    {
-      id: 22,
-      shape: "circularImage",
-      image: DIR + "LaVictoria.jpg",
-        // brokenImage: DIR + "9.png",
-      label: "Distrito \n La Victoria",
-      shapeProperties: { useImageSize: false },
-      size: 40 
-      },
-    {
-      id: 23,
-      shape: "circularImage",
-      image: DIR + "Lince.jpg",
-      // brokenImage: DIR + "9.png",
-      label: "Distrito \n Lince",
-      shapeProperties: { useImageSize: false },
-      size: 40 
-    },
-    {
-      id: 24,
-      shape: "circularImage",
-      image: DIR + "Magdalena.jpg",
-      // brokenImage: DIR + "9.png",
-      label: "Distrito \n Magdalena",
-      shapeProperties: { useImageSize: false },
-      size: 40 
-    },
-    {
-      id: 25,
-      shape: "circularImage",
-      image: DIR + "SanIsidro.jpg",
-       // brokenImage: DIR + "9.png",
-      label: "Distrito \n San Isidro",
-      shapeProperties: { useImageSize: false },
-      size: 40 
-    },
-    {
-      id: 26,
-      shape: "circularImage",
-      image: DIR + "SanBorja.jpg",
-        // brokenImage: DIR + "9.png",
-      label: "Distrito \n  San Borja",
-      shapeProperties: { useImageSize: false },
-      size: 40 
-    },
-    {
-      id: 27,
-      shape: "circularImage",
-      image: DIR + "Surquillo.jpg",
-        // brokenImage: DIR + "9.png",
-      label: "Distrito \n Surquillo",
-      shapeProperties: { useImageSize: false },
-      size: 40 
-    },
-    {
-        id: 28,
-        shape: "circularImage",
-        image: DIR + "Miraflores.jpg",
-        // brokenImage: DIR + "9.png",
-        label: "Distrito \n Miraflores",
-        shapeProperties: { useImageSize: false },
-      size: 40 
-    },
-    {
-        id: 29,
-        shape: "circularImage",
-        image: DIR + "Chaclacayo.jpg",
-        // brokenImage: DIR + "9.png",
-        label: "Distrito \n Chaclacayo",
-        shapeProperties: { useImageSize: false },
-      size: 40 
-    },
-    {
-        id: 30,
-        shape: "circularImage",
-        image: DIR + "Barranco.jpg",
-        // brokenImage: DIR + "9.png",
-        label: "Distrito \n Barranco",
-        shapeProperties: { useImageSize: false },
-      size: 40 
-    },
-    {
-        id: 31,
-        shape: "circularImage",
-        image: DIR + "SantiagodeSurco.jpg",
-        // brokenImage: DIR + "9.png",
-        label: "Distrito \n Santiago de Surco",
-        shapeProperties: { useImageSize: false },
-      size: 40 
-    },
-    {
-        id: 32,
-        shape: "circularImage",
-        image: DIR + "Chorrillos.jpg",
-        // brokenImage: DIR + "9.png",
-        label: "Distrito \n Chorrillos", 
-        shapeProperties: { useImageSize: false },
-      size: 40 
-    },
-    {
-        id: 33,
-        shape: "circularImage",
-        image: DIR + "SanJuandeMiraflores.jpg",
-        // brokenImage: DIR + "9.png",
-        label: "Distrito \n San Juan de Miraflores",
-        shapeProperties: { useImageSize: false },
-      size: 40 
-    },
-    {
-        id: 34,
-        shape: "circularImage",
-        image: DIR + "VilladelSalvador.jpg",
-        // brokenImage: DIR + "9.png",
-        label: "Distrito \n Villa el Salvador",
-        shapeProperties: { useImageSize: false },
-      size: 40 
-    },
-    {
-        id: 35,
-        shape: "circularImage",
-        image: DIR + "VillaMariadelTriunfo.jpg",
-        // brokenImage: DIR + "9.png",
-        label: "Distrito \n Villa Maria del Triunfo",
-        shapeProperties: { useImageSize: false },
-      size: 40 
-    },
-    {
-        id: 36,
-        shape: "circularImage",
-        image: DIR + "Pachacamac.jpg",
-        // brokenImage: DIR + "9.png",
-        label: "Distrito \n Pachacamac",
-        shapeProperties: { useImageSize: false },
-      size: 40 
-    },
-    {
-        id: 37,
-        shape: "circularImage",
-        image: DIR + "Lurin.jpg",
-        // brokenImage: DIR + "9.png",
-        label: "Distrito \n Lurin",
-        shapeProperties: { useImageSize: false },
-      size: 40 
-    },
-    {
-        id: 38,
-        shape: "circularImage",
-        image: DIR + "PuntaHermosa.jpg",
-        // brokenImage: DIR + "9.png",
-        label: "Distrito \n Punta Hermosa",
-        shapeProperties: { useImageSize: false },
-      size: 40 
-    },
-    {
-        id: 39,
-        shape: "circularImage",
-        image: DIR + "PuntaNegra.jpg",
-        // brokenImage: DIR + "9.png",
-        label: "Distrito \n Punta Negra",
-        shapeProperties: { useImageSize: false },
-      size: 40 
-    },
-    {
-        id: 40,
-        shape: "circularImage",
-        image: DIR + "SanBartolo.jpg",
-        // brokenImage: DIR + "9.png",
-        label: "Distrito \n San Bartolo",
-        shapeProperties: { useImageSize: false },
-        size: 40 
-    },
-    {
-        id: 41,
-        shape: "circularImage",
-        image: DIR + "SantaMariadelMar.jpg",
-        // brokenImage: DIR + "9.png",
-        label: "Distrito \n Santa Marira del Mar",
-        shapeProperties: { useImageSize: false },
-      size: 40 
-    },
-    {
-        id: 42,
-        shape: "circularImage",
-        image: DIR + "Pucusana.jpg",
-        // brokenImage: DIR + "9.png",
-        label: "Distrito \n Pucusana",
-        shapeProperties: { useImageSize: false },
-      size: 40 
-    },
+  //   },
+  //   { 
+  //     id: 7, shape: "circularImage", 
+  //     image: DIR + "PuentePiedra.jpg" ,
+  //     label: "Distrito \n Puente Piedra", 
+  //     shapeProperties: { useImageSize: false },
+  //     size: 40,
+  //   },
+  //   { 
+  //     id: 8, 
+  //     shape: "circularImage", 
+  //     image: DIR + "Carabayllo.jpg", 
+  //     label: "Distrito \n Carabayllo", 
+  //     shapeProperties: { useImageSize: false },
+  //     size: 40,
+  //   },
+  //   {
+  //     id: 9,
+  //     shape: "circularImage",
+  //     image: DIR + "Ancon.jpg",
+  //     // label: "useImageSize + imagePadding:15",
+  //     label: "Distrito \n Ancon", 
+  //     shapeProperties: { useImageSize: false },
+  //     size: 40,
+  //   },
+  //   { 
+  //     id: 10,
+  //     shape: "circularImage", 
+  //     image: DIR + "SantaRosa.jpg", 
+  //     label: "Distrito \n Santa Rosa", 
+  //     shapeProperties: { useImageSize: false },
+  //     size: 40,
+  //   },
+  //   { 
+  //     id: 11,
+  //     shape: "circularImage",
+  //     image: DIR + "SanJuandeLurigancho.jpg",
+  //     label: "Distrito \n San Juan de Lurigancho", 
+  //     shapeProperties: { useImageSize: false },
+  //     size: 40,
+  //   },
+  //   { 
+  //     id: 12, 
+  //     shape: "circularImage", 
+  //     image: DIR + "Chosica.jpg",
+  //     label: "Distrito \n Chosica", 
+  //     shapeProperties: { useImageSize: false },
+  //     size: 40, },
+  //   { 
+  //     id: 13,
+  //     shape: "circularImage",
+  //     image: DIR + "ElAgustino.jpg", 
+  //     label: "Distrito \n El Agustino", 
+  //     shapeProperties: { useImageSize: false },
+  //     size: 40 
+  //   },
+  //   { id: 14,
+  //     shape: "circularImage",
+  //     image: DIR + "SantaAnita.jpg",
+  //     label: "Distrito \n SantaAnita", 
+  //     shapeProperties: { useImageSize: false },
+  //     size: 40 
+  //   },
+  //   {
+  //     id: 15,
+  //     shape: "circularImage",
+  //     image: DIR + "Ate.jpg",
+  //     label: "Distrito \n Ate",
+  //     shapeProperties: { useImageSize: false },
+  //     size: 40 
+  //   },
+  //   {
+  //     id: 16,
+  //     shape: "circularImage",
+  //     image: DIR + "LaMolina.jpg",
+  //     // brokenImage: DIR + "9.png",
+  //     label: "Distrito \n La Molina",
+  //     shapeProperties: { useImageSize: false },
+  //     size: 40 
+  //   },
+  //   {
+  //     id: 17,
+  //     shape: "circularImage",
+  //     image: DIR + "Cieneguilla.jpg",
+  //       // brokenImage: DIR + "9.png",
+  //     label: "Distrito \n Cieneguilla",
+  //     shapeProperties: { useImageSize: false },
+  //     size: 40 
+  //   },
+  //   {
+  //     id: 18,
+  //     shape: "circularImage",
+  //     image: DIR + "Rimac.jpg",
+  //     // brokenImage: DIR + "9.png",
+  //     label: "Distrito \n Rimac",
+  //     shapeProperties: { useImageSize: false },
+  //     size: 40 
+  //   },
+  //   {
+  //     id: 19,
+  //     shape: "circularImage",
+  //     image: DIR + "Breña.jpg",
+  //     // brokenImage: DIR + "9.png",
+  //     label: "Distrito \n Breña",
+  //     shapeProperties: { useImageSize: false },
+  //     size: 40 
+  //   },
+  //   {
+  //     id: 20,
+  //     shape: "circularImage",
+  //     image: DIR + "PuebloLibre.jpg",
+  //       // brokenImage: DIR + "9.png",
+  //     label: "Distrito \n Pueblo Libre",
+  //     shapeProperties: { useImageSize: false },
+  //     size: 40 
+  //   },
+  //   {
+  //     id: 21,
+  //     shape: "circularImage",
+  //     image: DIR + "JesusMaria.jpg",
+  //       // brokenImage: DIR + "9.png",
+  //     label: "Distrito \n Jesus Maria",
+  //     shapeProperties: { useImageSize: false },
+  //     size: 40 
+  //   },
+  //   {
+  //     id: 22,
+  //     shape: "circularImage",
+  //     image: DIR + "LaVictoria.jpg",
+  //       // brokenImage: DIR + "9.png",
+  //     label: "Distrito \n La Victoria",
+  //     shapeProperties: { useImageSize: false },
+  //     size: 40 
+  //     },
+  //   {
+  //     id: 23,
+  //     shape: "circularImage",
+  //     image: DIR + "Lince.jpg",
+  //     // brokenImage: DIR + "9.png",
+  //     label: "Distrito \n Lince",
+  //     shapeProperties: { useImageSize: false },
+  //     size: 40 
+  //   },
+  //   {
+  //     id: 24,
+  //     shape: "circularImage",
+  //     image: DIR + "Magdalena.jpg",
+  //     // brokenImage: DIR + "9.png",
+  //     label: "Distrito \n Magdalena",
+  //     shapeProperties: { useImageSize: false },
+  //     size: 40 
+  //   },
+  //   {
+  //     id: 25,
+  //     shape: "circularImage",
+  //     image: DIR + "SanIsidro.jpg",
+  //      // brokenImage: DIR + "9.png",
+  //     label: "Distrito \n San Isidro",
+  //     shapeProperties: { useImageSize: false },
+  //     size: 40 
+  //   },
+  //   {
+  //     id: 26,
+  //     shape: "circularImage",
+  //     image: DIR + "SanBorja.jpg",
+  //       // brokenImage: DIR + "9.png",
+  //     label: "Distrito \n  San Borja",
+  //     shapeProperties: { useImageSize: false },
+  //     size: 40 
+  //   },
+  //   {
+  //     id: 27,
+  //     shape: "circularImage",
+  //     image: DIR + "Surquillo.jpg",
+  //       // brokenImage: DIR + "9.png",
+  //     label: "Distrito \n Surquillo",
+  //     shapeProperties: { useImageSize: false },
+  //     size: 40 
+  //   },
+  //   {
+  //       id: 28,
+  //       shape: "circularImage",
+  //       image: DIR + "Miraflores.jpg",
+  //       // brokenImage: DIR + "9.png",
+  //       label: "Distrito \n Miraflores",
+  //       shapeProperties: { useImageSize: false },
+  //     size: 40 
+  //   },
+  //   {
+  //       id: 29,
+  //       shape: "circularImage",
+  //       image: DIR + "Chaclacayo.jpg",
+  //       // brokenImage: DIR + "9.png",
+  //       label: "Distrito \n Chaclacayo",
+  //       shapeProperties: { useImageSize: false },
+  //     size: 40 
+  //   },
+  //   {
+  //       id: 30,
+  //       shape: "circularImage",
+  //       image: DIR + "Barranco.jpg",
+  //       // brokenImage: DIR + "9.png",
+  //       label: "Distrito \n Barranco",
+  //       shapeProperties: { useImageSize: false },
+  //     size: 40 
+  //   },
+  //   {
+  //       id: 31,
+  //       shape: "circularImage",
+  //       image: DIR + "SantiagodeSurco.jpg",
+  //       // brokenImage: DIR + "9.png",
+  //       label: "Distrito \n Santiago de Surco",
+  //       shapeProperties: { useImageSize: false },
+  //     size: 40 
+  //   },
+  //   {
+  //       id: 32,
+  //       shape: "circularImage",
+  //       image: DIR + "Chorrillos.jpg",
+  //       // brokenImage: DIR + "9.png",
+  //       label: "Distrito \n Chorrillos", 
+  //       shapeProperties: { useImageSize: false },
+  //     size: 40 
+  //   },
+  //   {
+  //       id: 33,
+  //       shape: "circularImage",
+  //       image: DIR + "SanJuandeMiraflores.jpg",
+  //       // brokenImage: DIR + "9.png",
+  //       label: "Distrito \n San Juan de Miraflores",
+  //       shapeProperties: { useImageSize: false },
+  //     size: 40 
+  //   },
+  //   {
+  //       id: 34,
+  //       shape: "circularImage",
+  //       image: DIR + "VilladelSalvador.jpg",
+  //       // brokenImage: DIR + "9.png",
+  //       label: "Distrito \n Villa el Salvador",
+  //       shapeProperties: { useImageSize: false },
+  //     size: 40 
+  //   },
+  //   {
+  //       id: 35,
+  //       shape: "circularImage",
+  //       image: DIR + "VillaMariadelTriunfo.jpg",
+  //       // brokenImage: DIR + "9.png",
+  //       label: "Distrito \n Villa Maria del Triunfo",
+  //       shapeProperties: { useImageSize: false },
+  //     size: 40 
+  //   },
+  //   {
+  //       id: 36,
+  //       shape: "circularImage",
+  //       image: DIR + "Pachacamac.jpg",
+  //       // brokenImage: DIR + "9.png",
+  //       label: "Distrito \n Pachacamac",
+  //       shapeProperties: { useImageSize: false },
+  //     size: 40 
+  //   },
+  //   {
+  //       id: 37,
+  //       shape: "circularImage",
+  //       image: DIR + "Lurin.jpg",
+  //       // brokenImage: DIR + "9.png",
+  //       label: "Distrito \n Lurin",
+  //       shapeProperties: { useImageSize: false },
+  //     size: 40 
+  //   },
+  //   {
+  //       id: 38,
+  //       shape: "circularImage",
+  //       image: DIR + "PuntaHermosa.jpg",
+  //       // brokenImage: DIR + "9.png",
+  //       label: "Distrito \n Punta Hermosa",
+  //       shapeProperties: { useImageSize: false },
+  //     size: 40 
+  //   },
+  //   {
+  //       id: 39,
+  //       shape: "circularImage",
+  //       image: DIR + "PuntaNegra.jpg",
+  //       // brokenImage: DIR + "9.png",
+  //       label: "Distrito \n Punta Negra",
+  //       shapeProperties: { useImageSize: false },
+  //     size: 40 
+  //   },
+  //   {
+  //       id: 40,
+  //       shape: "circularImage",
+  //       image: DIR + "SanBartolo.jpg",
+  //       // brokenImage: DIR + "9.png",
+  //       label: "Distrito \n San Bartolo",
+  //       shapeProperties: { useImageSize: false },
+  //       size: 40 
+  //   },
+  //   {
+  //       id: 41,
+  //       shape: "circularImage",
+  //       image: DIR + "SantaMariadelMar.jpg",
+  //       // brokenImage: DIR + "9.png",
+  //       label: "Distrito \n Santa Marira del Mar",
+  //       shapeProperties: { useImageSize: false },
+  //     size: 40 
+  //   },
+  //   {
+  //       id: 42,
+  //       shape: "circularImage",
+  //       image: DIR + "Pucusana.jpg",
+  //       // brokenImage: DIR + "9.png",
+  //       label: "Distrito \n Pucusana",
+  //       shapeProperties: { useImageSize: false },
+  //     size: 40 
+  //   },
     
-    {
-        id: 43,
-        shape: "circularImage",
-        image: DIR + "SanMiguel.jpg",
-        // brokenImage: DIR + "9.png",
-        label: "Distrito \n San Miguel",
-        shapeProperties: { useImageSize: false },
-      size: 40 
-    },
-    {
-      id: 44,
-      shape: "circularImage",
-      image: DIR + "SanLuis.jpg",
-      // brokenImage: DIR + "9.png",
-      label: "Distrito \n San Luis",
-      shapeProperties: { useImageSize: false },
-      size: 40
-  },{
-      id: 45,
-      shape: "circularImage",
-      image: DIR + "Callao.jpg",
-      // brokenImage: DIR + "9.png",
-      label: "Distrito \n Callao ",
-      shapeProperties: { useImageSize: false },
-    size: 40 
-  },
-  ];
-  edges = [
+  //   {
+  //       id: 43,
+  //       shape: "circularImage",
+  //       image: DIR + "SanMiguel.jpg",
+  //       // brokenImage: DIR + "9.png",
+  //       label: "Distrito \n San Miguel",
+  //       shapeProperties: { useImageSize: false },
+  //     size: 40 
+  //   },
+  //   {
+  //     id: 44,
+  //     shape: "circularImage",
+  //     image: DIR + "SanLuis.jpg",
+  //     // brokenImage: DIR + "9.png",
+  //     label: "Distrito \n San Luis",
+  //     shapeProperties: { useImageSize: false },
+  //     size: 40
+  // },{
+  //     id: 45,
+  //     shape: "circularImage",
+  //     image: DIR + "Callao.jpg",
+  //     // brokenImage: DIR + "9.png",
+  //     label: "Distrito \n Callao ",
+  //     shapeProperties: { useImageSize: false },
+  //   size: 40 
+  // },
+  // ];
+  edges = 
+  [
     //Callao=45
     { from: 45, to:1 , label: "calle 0 av ",font:{align:"middle"},length:500},
     { from: 45, to:43 , label: "calle 0 av ",font:{align:"middle"},length:500},
@@ -1261,6 +1240,9 @@ function draw1() {
 window.addEventListener("load", () => {
   draw1();
 });
+
+
+
 // function drawRoute(fromDistrict, toDistrict) {
 //   let currentDistrict = fromDistrict;
 //   let destinationDistrict = toDistrict;
@@ -1269,21 +1251,3 @@ window.addEventListener("load", () => {
 //   }
 // }
 // drawRoute(1,2)
-
-
-
-// drawRoute(45, 4);
-// const obtenerInformacion= (materia)=>{
-//   Distritos={
-//       fisica:["Marta","pedro","cofla","maria","yo"],
-//       programacion:["calle 0 av ","pedro","juan","yo"],
-//       logica:["Roberto","pedro","juan","cofla","maria","yo"],
-//       quimica:["Perez","juan","cofla","maria","yo"]
-//   }
-//   if (materias[materia]!==undefined) {
-//       return [materia,materias[materia],materias]
-//   }
-//   else{
-//       return materias
-//   }
-// }
