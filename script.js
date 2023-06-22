@@ -645,6 +645,7 @@ function encontrarCamino(edges, inicio, destino) {
   return null;
 }
 
+
 function obtenerSeleccion() {
   // Obtener el elemento select por su id
   const selectDistrito1 = document.getElementById('distrito1');
