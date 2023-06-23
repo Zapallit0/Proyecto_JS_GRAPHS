@@ -4,44 +4,108 @@ body {
     flex-direction: column;
     text-align: center;
     align-items: center;
+    overflow-y: hidden;
+    background-color:#07575B;
 }
 header{
     display: flex;
-    font-size:30px;
     font-family: 'Kablammo', cursive;
-    height:10vh;
-    width: 60vw;
-    border:grey 1px solid;
-    box-shadow: 20px 10px grey;
-    margin-bottom: 30px;
+    height: 10vh;
+    width: 100vw;
+    margin-bottom: 4vw;
     text-transform: uppercase;
     flex-wrap: wrap;
     flex-direction: column;
     align-content: center;
+    margin-top:1vw;
 }
 header h1{
-    color:red;
+    color:white;
     margin: 0px;
-    font-size: 50px;
+    font-size: 90px;
 }
 .Rutas{
     display: flex;
+    flex-direction:row;
+    text-align: center;
+    align-items: center;
+    align-content: center;
+    width: 80vw;
+    height: 60vh;
+    background-color: #66A5AD;
+    border-radius: 25px;
 }
 form{
     display: flex;
     flex-direction: column;
     width: 20vw;
-    margin-top: 30vh;
     align-items: center;
+    margin-right:100px ;
+    margin-left: 100px;
 }
 form label{
     margin:10px 0px ;
+    font-size: 30px;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bolder;
 }
 form select{
     margin: 10px 0px;
+    width:200px;
 }
-form button{
-    margin-top: 40px;
+#distrito1 {
+    font-size: 16px;
+    padding: 10px;
+    border: none;
+    background-color: #ECECEC;
+    color: #333333;
+    width: 200px;
+}
+  
+#distrito1 option:first-child {
+    color: gray;
+}
+  
+#distrito1 option {
+    background-color: #FFFFFF;
+    color: #333333;
+}
+  
+#distrito2 {
+    font-size: 16px;
+    padding: 10px;
+    margin-bottom:20px;
+    border: none;
+    background-color: #ECECEC;
+    color: #333333;
+    width: 200px;
+}
+  
+#distrito2 option:first-child {
+    color: gray;
+}
+  
+#distrito2 option {
+    background-color: #FFFFFF;
+    color: #333333;
+}
+  
+form button {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    border: none;
+    background-color: #333333;
+    color: #ffffff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+  
+form button:hover {
+    background-color: #555555;
 }
 
 .Rutas span{
@@ -49,11 +113,11 @@ form button{
 }
 
 #rutaNetwork {
-    width: 60vw;
-    height: 85vh;
-    border: 1px solid lightgray;
+    width: 40vw;
+    height: 40vh;
     border-radius: 25px;
-    background-color: #1F6E8C;
+    margin: 40px;
+    background-color: #68829E;
 }
 @media(max-width:1000px){
     header h1{
@@ -66,3 +130,20 @@ form button{
         font-size:30px;
     }
 } 
+.boton-volver{
+    margin-top: 50px;
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    border: none;
+    background-color: #333333;
+    color: #ffffff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.boton-volver:hover {
+    background-color: #555555;
+}

@@ -5,10 +5,16 @@
     <script type="text/javascript" src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles2.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kablammo&display=swap" rel="stylesheet">
     <title>Document</title>
 </head>
 <body>
-  <div class="Rutas"></div>
+  <header>
+    <h1>Nuevas Rutas Pandemia</h1>
+  </header>
+  <div class="Rutas">
     <form>
         <label for="nombres">Selecciona Distrito de partida</label>
         <select id="distrito1">
@@ -109,10 +115,11 @@
           <option value="45">Distrito Callao</option>
         </select>
         <span id="mensaje" style="color: red;"></span>
-        <button type="button" id="btnEnviar">Enviar</button>
+        <button type="button" id="btnEnviar">Buscar ruta</button>
     </form>
       <div id="rutaNetwork">UwUuu</div>
   </div>
+  <button onclick="window.location.href = 'index.html';" class="boton-volver">Volver a la página principal</button>
   <script src="script2.js"></script>
 </body>
 </html>

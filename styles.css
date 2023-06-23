@@ -4,7 +4,6 @@ body {
     flex-direction: column;
     text-align: center;
     align-items: center;
-    overflow-y: hidden;
 }
 header{
     display: flex;
@@ -24,29 +23,6 @@ header h1{
     color:red;
     margin: 0px;
     font-size: 50px;
-}
-.Rutas{
-    display: flex;
-}
-form{
-    display: flex;
-    flex-direction: column;
-    width: 20vw;
-    margin-top: 30vh;
-    align-items: center;
-}
-form label{
-    margin:10px 0px ;
-}
-form select{
-    margin: 10px 0px;
-}
-form button{
-    margin-top: 40px;
-}
-
-.Rutas span{
-    font-weight:bolder ;
 }
 
 #mynetwork {

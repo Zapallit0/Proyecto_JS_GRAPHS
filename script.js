@@ -401,135 +401,222 @@ function draw1() {
     size: 40 
   },
   ];
-  edges = 
-  [
-    //Callao=45
-    { from: 45, to:1 , label: "calle 0 av ",font:{align:"middle"},length:500},
-    { from: 45, to:43 , label: "calle 0 av ",font:{align:"middle"},length:500},
-    { from: 45, to:2 , label: "calle 0 av ",font:{align:"middle"},length:500},
-    
-    //Los olivos=4
-    { from: 4, to: 3 , label: "calle 0 av ",font:{align:"middle"},length:500},
-    { from: 4, to: 6 , label: "calle 0 av ",font:{align:"middle"},length:500},
-    { from: 4, to: 7 , label: "calle 0 av ",font:{align:"middle"},length:500},
-    { from: 4, to:5 , label: "calle 0 av ",font:{align:"middle"},length:500},
+  edges = [//Callao=45
+  { from: 45, to:1 , label: "--> ",font:{align:"middle"},length:500},
+  { from: 1, to:45 , label: "--> ",font:{align:"middle"},length:500},
+  { from: 45, to:43 , label: "--> ",font:{align:"middle"},length:500},
+  { from: 43, to:45 , label: "--> ",font:{align:"middle"},length:500},
+  { from: 45, to:2 , label: "--> ",font:{align:"middle"},length:500},
+  { from: 2, to:45 , label: "--> ",font:{align:"middle"},length:500},
+  
+  //Los olivos=4
+  { from: 4, to: 3 , label: "--> ",font:{align:"middle"},length:500},
+  { from: 3, to: 4 , label: "--> ",font:{align:"middle"},length:500},
+  { from: 4, to: 6 , label: "--> ",font:{align:"middle"},length:500},
+  { from: 6, to: 4 , label: "--> ",font:{align:"middle"},length:500},
+  { from: 4, to: 7 , label: "--> ",font:{align:"middle"},length:500},
+  { from: 7, to: 4 , label: "--> ",font:{align:"middle"},length:500},
+  { from: 4, to:5 , label: "--> ",font:{align:"middle"},length:500},
+  { from: 5, to: 4 , label: "--> ",font:{align:"middle"},length:500},
 
-    //Independencia=5
-    { from: 5, to: 3 , label: "calle 0 av ",font:{align:"middle"},length:500},
-    { from: 5, to: 6 , label: "calle 0 av ",font:{align:"middle"},length:500},
-    { from: 5, to: 11 , label: "calle 0 av ",font:{align:"middle"},length:500},
-    { from: 5, to:18 , label: "calle 0 av ",font:{align:"middle"},length:500},
+  //Independencia=5
+  { from: 5, to: 3 , label: "--> ",font:{align:"middle"},length:500},
+  { from: 5, to: 6 , label: "--> ",font:{align:"middle"},length:500},
+  { from: 5, to: 11 , label: "--> ",font:{align:"middle"},length:500},
+  { from: 5, to:18 , label: "--> ",font:{align:"middle"},length:500},
 
-    //Comas=6
-    { from: 6, to: 7 , label: "calle 0 av ",font:{align:"middle"},length:500},
-    { from: 6, to: 8, label: "calle 0 av ",font:{align:"middle"},length:500 },
-    { from: 6, to: 11, label: "calle 0 av ",font:{align:"middle"},length:500 },
+  //Comas=6
+  { from: 6, to: 7 , label: "--> ",font:{align:"middle"},length:500},
+  { from: 7, to: 6 , label: "--> ",font:{align:"middle"},length:500},
+  { from: 6, to: 8, label: "--> ",font:{align:"middle"},length:500 },
+  { from: 8, to: 6 , label: "--> ",font:{align:"middle"},length:500},
+  { from: 6, to: 11, label: "--> ",font:{align:"middle"},length:500 },
+  { from: 11, to: 6 , label: "--> ",font:{align:"middle"},length:500},
 
-    //Carabayllo=8
-    { from: 8, to:7  , label: "calle 0 av ",font:{align:"middle"},length:500},
-    { from: 8, to: 9 , label: "calle 0 av ",font:{align:"middle"},length:500},
-    { from: 8, to: 11, label: "calle 0 av ",font:{align:"middle"},length:500 },
-    
-    //Ancon=9
-    { from: 9, to: 10 , label: "calle 0 av ",font:{align:"middle"},length:500},
+  //Carabayllo=8
+  { from: 8, to:7  , label: "--> ",font:{align:"middle"},length:500},
+  { from: 7, to: 8 , label: "--> ",font:{align:"middle"},length:500},
+  { from: 8, to: 9 , label: "--> ",font:{align:"middle"},length:500},
+  { from: 9, to: 8 , label: "--> ",font:{align:"middle"},length:500},
+  { from: 8, to: 11, label: "--> ",font:{align:"middle"},length:500 },
+  { from: 11, to: 8 , label: "--> ",font:{align:"middle"},length:500},
+  
+  //Ancon=9
+  { from: 9, to: 10 , label: "--> ",font:{align:"middle"},length:500},
+  { from: 10, to: 9 , label: "--> ",font:{align:"middle"},length:500},
 
-    //San Martin de Porres=3
-    { from: 3, to:2 , label: "calle 0 av ",font:{align:"middle"},length:500},
-    { from: 3, to: 45, label: "calle 0 av ",font:{align:"middle"},length:500 },
+  //San Martin de Porres=3
+  { from: 3, to:2 , label: "--> ",font:{align:"middle"},length:500},
+  { from: 2, to: 3 , label: "--> ",font:{align:"middle"},length:500},
+  { from: 3, to: 45, label: "--> ",font:{align:"middle"},length:500 },
+  { from: 45, to: 3 , label: "--> ",font:{align:"middle"},length:500},
 
-    //Rimac=18
-    { from: 18, to:11 , label: "calle 0 av ",font:{align:"middle"},length:500},
-    { from: 18, to:2, label: "calle 0 av ",font:{align:"middle"},length:500},
-    
-    //Lima=2
-    { from: 2, to:20 , label: "calle 0 av ",font:{align:"middle"},length:500},
-    { from: 2, to:22 , label: "calle 0 av ",font:{align:"middle"},length:500},
-    { from: 2, to:21 , label: "calle 0 av ",font:{align:"middle"},length:500},
-    { from: 2, to:13 , label: "calle 0 av ",font:{align:"middle"},length:500},
-    { from: 2, to:19 , label: "calle 0 av ",font:{align:"middle"},length:500},
-    { from: 2, to:21 , label: "calle 0 av ",font:{align:"middle"},length:500},
+  //Rimac=18
+  { from: 18, to:11 , label: "--> ",font:{align:"middle"},length:500},
+  { from: 11, to: 18 , label: "--> ",font:{align:"middle"},length:500},
+  { from: 18, to:2, label: "--> ",font:{align:"middle"},length:500},
+  { from: 2, to: 18 , label: "--> ",font:{align:"middle"},length:500},
+  
+  //Lima=2
+  { from: 2, to:20 , label: "--> ",font:{align:"middle"},length:500},
+  { from: 20, to: 2, label: "--> ",font:{align:"middle"},length:500},
+  { from: 2, to:22 , label: "--> ",font:{align:"middle"},length:500},
+  { from: 22, to: 2 , label: "--> ",font:{align:"middle"},length:500},
+  { from: 2, to:21 , label: "--> ",font:{align:"middle"},length:500},
+  { from: 21, to: 2 , label: "--> ",font:{align:"middle"},length:500},
+  { from: 2, to:13 , label: "--> ",font:{align:"middle"},length:500},
+  { from: 13, to: 2 , label: "--> ",font:{align:"middle"},length:500},
+  { from: 2, to:19 , label: "--> ",font:{align:"middle"},length:500},
+  { from: 19, to: 2 , label: "--> ",font:{align:"middle"},length:500},
+  { from: 2, to:21 , label: "--> ",font:{align:"middle"},length:500},
+  { from: 21, to: 2 , label: "--> ",font:{align:"middle"},length:500},
 
-    
-    //Pueblo Libre=20
-    { from: 20, to:24 , label: "calle 0 av ",font:{align:"middle"},length:500},
-    
-    //JesusMaria=21
-    { from: 21, to:24 , label: "calle 0 av ",font:{align:"middle"},length:500},
-    { from: 21, to:22 , label: "calle 0 av ",font:{align:"middle"},length:500},
-    { from: 21, to:23 , label: "calle 0 av ",font:{align:"middle"},length:500},
-    { from: 21, to:25 , label: "calle 0 av ",font:{align:"middle"},length:500},
-    
-    //San Isidro=25
-    { from: 25, to:28 , label: "calle 0 av ",font:{align:"middle"},length:500},
-    { from: 25, to:27 , label: "calle 0 av ",font:{align:"middle"},length:500},
-    { from: 25, to:26 , label: "calle 0 av ",font:{align:"middle"},length:500},
-    { from: 25, to:22 , label: "calle 0 av ",font:{align:"middle"},length:500},
-    
-    //Miraflores=28
-    { from: 28, to:27 , label: "calle 0 av ",font:{align:"middle"},length:500},
-    { from: 28, to:30 , label: "calle 0 av ",font:{align:"middle"},length:500},
-    { from: 28, to:31 , label: "calle 0 av ",font:{align:"middle"},length:500},
-    
-    //San Borja=26
-    { from: 26, to:27 , label: "calle 0 av ",font:{align:"middle"},length:500},
-    { from: 26, to:22 , label: "calle 0 av ",font:{align:"middle"},length:500},
-    { from: 26, to:31 , label: "calle 0 av ",font:{align:"middle"},length:500},
-    { from: 26, to:15 , label: "calle 0 av ",font:{align:"middle"},length:500},
-    
-    //Santiago de Surco=31
-    { from: 31, to:30 , label: "calle 0 av ",font:{align:"middle"},length:500},
-    { from: 31, to:32 , label: "calle 0 av ",font:{align:"middle"},length:500},
-    { from: 31, to:15 , label: "calle 0 av ",font:{align:"middle"},length:500},
-    { from: 31, to:16 , label: "calle 0 av ",font:{align:"middle"},length:500},
-    { from: 31, to:33 , label: "calle 0 av ",font:{align:"middle"},length:500},
-    
-    //Chorrillos=32
-    { from: 32, to:33 , label: "calle 0 av ",font:{align:"middle"},length:500},
-    { from: 31, to:34 , label: "calle 0 av ",font:{align:"middle"},length:500},
-    
-    //San juan de miraflores=33
-    { from: 33, to:16 , label: "calle 0 av ",font:{align:"middle"},length:500},
-    { from: 33, to:35 , label: "calle 0 av ",font:{align:"middle"},length:500},
-    { from: 31, to:34 , label: "calle 0 av ",font:{align:"middle"},length:500},
-    
-    //Villa maria del triunfo=35
-    { from: 35, to:34 , label: "calle 0 av ",font:{align:"middle"},length:500},
-    { from: 35, to:16 , label: "calle 0 av ",font:{align:"middle"},length:500},
-    { from: 35, to:36 , label: "calle 0 av ",font:{align:"middle"},length:500},
-    { from: 35, to:37 , label: "calle 0 av ",font:{align:"middle"},length:500},
-    
-    //Villa el Salvador=34
-    { from: 34, to:37 , label: "calle 0 av ",font:{align:"middle"},length:500},
-    //Pachacamac=36
-    { from: 36, to:16 , label: "calle 0 av ",font:{align:"middle"},length:500},
-    { from: 36, to:17 , label: "calle 0 av ",font:{align:"middle"},length:500},
-    { from: 36, to:37 , label: "calle 0 av ",font:{align:"middle"},length:500},
-    { from: 36, to:15 , label: "calle 0 av ",font:{align:"middle"},length:500},
+  
+  //Pueblo Libre=20
+  { from: 20, to:24 , label: "--> ",font:{align:"middle"},length:500},
+  { from: 24, to:20 , label: "--> ",font:{align:"middle"},length:500},
+  
+  //JesusMaria=21
+  { from: 21, to:24 , label: "--> ",font:{align:"middle"},length:500},
+  { from: 24, to: 21 , label: "--> ",font:{align:"middle"},length:500},
+  { from: 21, to:22 , label: "--> ",font:{align:"middle"},length:500},
+  { from: 22, to:21 , label: "--> ",font:{align:"middle"},length:500},
+  { from: 21, to:23 , label: "--> ",font:{align:"middle"},length:500},
+  { from: 23, to:21 , label: "--> ",font:{align:"middle"},length:500},
+  { from: 21, to:25 , label: "--> ",font:{align:"middle"},length:500},
+  { from: 25, to: 21 , label: "--> ",font:{align:"middle"},length:500},
+  
+  //San Isidro=25
+  { from: 25, to:28 , label: "--> ",font:{align:"middle"},length:500},
+  { from: 28, to:25 , label: "--> ",font:{align:"middle"},length:500},
+  { from: 25, to:27 , label: "--> ",font:{align:"middle"},length:500},
+  { from: 27, to:25 , label: "--> ",font:{align:"middle"},length:500},
+  { from: 25, to:26 , label: "--> ",font:{align:"middle"},length:500},
+  { from: 26, to:25 , label: "--> ",font:{align:"middle"},length:500},
+  { from: 25, to:22 , label: "--> ",font:{align:"middle"},length:500},
+  { from: 22, to:25 , label: "--> ",font:{align:"middle"},length:500},
+  
+  //Miraflores=28
+  { from: 28, to:27 , label: "--> ",font:{align:"middle"},length:500},
+  { from: 27, to:28 , label: "--> ",font:{align:"middle"},length:500},
+  { from: 28, to:30 , label: "--> ",font:{align:"middle"},length:500},
+  { from: 30, to:28 , label: "--> ",font:{align:"middle"},length:500},
+  { from: 28, to:31 , label: "--> ",font:{align:"middle"},length:500},
+  { from: 31, to:28 , label: "--> ",font:{align:"middle"},length:500},
+  
+  //San Borja=26
+  { from: 26, to:27 , label: "--> ",font:{align:"middle"},length:500},
+  { from: 27, to:26 , label: "--> ",font:{align:"middle"},length:500},
+  { from: 26, to:22 , label: "--> ",font:{align:"middle"},length:500},
+  { from: 22, to:26 , label: "--> ",font:{align:"middle"},length:500},
+  { from: 26, to:31 , label: "--> ",font:{align:"middle"},length:500},
+  { from: 31, to:26 , label: "--> ",font:{align:"middle"},length:500},
+  { from: 26, to:15 , label: "--> ",font:{align:"middle"},length:500},
+  { from: 15, to:26 , label: "--> ",font:{align:"middle"},length:500},
+  
+  //Santiago de Surco=31
+  { from: 31, to:30 , label: "--> ",font:{align:"middle"},length:500},
+  { from: 30, to:31 , label: "--> ",font:{align:"middle"},length:500},
+  { from: 31, to:32 , label: "--> ",font:{align:"middle"},length:500},
+  { from: 32, to:31 , label: "--> ",font:{align:"middle"},length:500},
+  { from: 31, to:15 , label: "--> ",font:{align:"middle"},length:500},
+  { from: 15, to:31 , label: "--> ",font:{align:"middle"},length:500},
+  { from: 31, to:16 , label: "--> ",font:{align:"middle"},length:500},
+  { from: 16, to:31 , label: "--> ",font:{align:"middle"},length:500},
+  { from: 31, to:33 , label: "--> ",font:{align:"middle"},length:500},
+  { from: 23, to:31 , label: "--> ",font:{align:"middle"},length:500},
 
-    //Lurin=37
-    { from: 37, to:38 , label: "calle 0 av ",font:{align:"middle"},length:500},
+  //Chorrillos=32
+  { from: 32, to:33 , label: "--> ",font:{align:"middle"},length:500},
+  { from: 33, to:32 , label: "--> ",font:{align:"middle"},length:500},
+  { from: 31, to:34 , label: "--> ",font:{align:"middle"},length:500},
+  { from: 34, to:31 , label: "--> ",font:{align:"middle"},length:500},
+  
+  //San juan de miraflores=33
+  { from: 33, to:16 , label: "--> ",font:{align:"middle"},length:500},
+  { from: 16, to:33 , label: "--> ",font:{align:"middle"},length:500},
+  { from: 33, to:35 , label: "--> ",font:{align:"middle"},length:500},
+  { from: 35, to:33 , label: "--> ",font:{align:"middle"},length:500},
+  { from: 31, to:34 , label: "--> ",font:{align:"middle"},length:500},
+  { from: 34, to:31 , label: "--> ",font:{align:"middle"},length:500},
+  
+  //Villa maria del triunfo=35
+  { from: 35, to:34 , label: "--> ",font:{align:"middle"},length:500},
+  { from: 34, to:35 , label: "--> ",font:{align:"middle"},length:500},
+  { from: 35, to:16 , label: "--> ",font:{align:"middle"},length:500},
+  { from: 16, to:35 , label: "--> ",font:{align:"middle"},length:500},
+  { from: 35, to:36 , label: "--> ",font:{align:"middle"},length:500},
+  { from: 36, to:35 , label: "--> ",font:{align:"middle"},length:500},
+  { from: 35, to:37 , label: "--> ",font:{align:"middle"},length:500},
+  { from: 37, to:35 , label: "--> ",font:{align:"middle"},length:500},
+  
+  //Villa el Salvador=34
+  { from: 34, to:37 , label: "--> ",font:{align:"middle"},length:500},
+  { from: 37, to:34 , label: "--> ",font:{align:"middle"},length:500},
+  //Pachacamac=36
+  { from: 36, to:16 , label: "--> ",font:{align:"middle"},length:500},
+  { from: 16, to:36 , label: "--> ",font:{align:"middle"},length:500},
+  { from: 36, to:17 , label: "--> ",font:{align:"middle"},length:500},
+  { from: 17, to:36 , label: "--> ",font:{align:"middle"},length:500},
+  { from: 36, to:37 , label: "--> ",font:{align:"middle"},length:500},
+  { from: 37, to:36 , label: "--> ",font:{align:"middle"},length:500},
+  { from: 36, to:15 , label: "--> ",font:{align:"middle"},length:500},
+  { from: 15, to:36 , label: "--> ",font:{align:"middle"},length:500},
 
-    //PuntaHermosa=38
-    { from: 38, to:39 , label: "calle 0 av ",font:{align:"middle"},length:500},
+  //Lurin=37
+  { from: 37, to:38 , label: "--> ",font:{align:"middle"},length:500},
+  { from: 38, to:37 , label: "--> ",font:{align:"middle"},length:500},
 
-    //PuntaNegra=39
-    { from: 39, to:40 , label: "calle 0 av ",font:{align:"middle"},length:500},
+  //PuntaHermosa=38
+  { from: 38, to:39 , label: "--> ",font:{align:"middle"},length:500},
+  { from: 39, to:38 , label: "--> ",font:{align:"middle"},length:500},
 
-    //San Bartolo=40
-    { from: 40, to:41 , label: "calle 0 av ",font:{align:"middle"},length:500},
+  //PuntaNegra=39
+  { from: 39, to:40 , label: "--> ",font:{align:"middle"},length:500},
+  { from: 40, to:39 , label: "--> ",font:{align:"middle"},length:500},
 
-    //Pucusana=42
-    { from: 42, to:41, label: "calle 0 av ",font:{align:"middle"},length:500},
+  //San Bartolo=40
+  { from: 40, to:41 , label: "--> ",font:{align:"middle"},length:500},
+  { from: 41, to:40 , label: "--> ",font:{align:"middle"},length:500},
 
-    //Chaclacayo=29
-    { from: 29, to: 17, label: "calle 0 av ",font:{align:"middle"},length:500},
-    { from: 29, to:15 , label: "calle 0 av ",font:{align:"middle"},length:500},
-    { from: 29, to:12 , label: "calle 0 av ",font:{align:"middle"},length:500},
-    
-    //Chosica=12
-    { from: 12, to:11 , label: "calle 0 av ",font:{align:"middle"},length:500},
-    { from: 12, to:15 , label: "calle 0 av ",font:{align:"middle"},length:500},
-  ]
+  //Pucusana=42
+  { from: 42, to:41, label: "--> ",font:{align:"middle"},length:500},
+  { from: 41, to:42 , label: "--> ",font:{align:"middle"},length:500},
+
+  //Chaclacayo=29
+  { from: 29, to: 17, label: "--> ",font:{align:"middle"},length:500},
+  { from: 17, to:29 , label: "--> ",font:{align:"middle"},length:500},
+  { from: 29, to:15 , label: "--> ",font:{align:"middle"},length:500},
+  { from: 15, to:29 , label: "--> ",font:{align:"middle"},length:500},
+  { from: 29, to:12 , label: "--> ",font:{align:"middle"},length:500},
+  { from: 12, to:29 , label: "--> ",font:{align:"middle"},length:500},
+  
+  //Chosica=12
+  { from: 12, to:11 , label: "--> ",font:{align:"middle"},length:500},
+  { from: 11, to:12 , label: "--> ",font:{align:"middle"},length:500},
+  { from: 12, to:15 , label: "--> ",font:{align:"middle"},length:500},
+  { from: 15, to:12 , label: "--> ",font:{align:"middle"},length:500},
+
+  //La molina=16
+  { from: 16, to:15 , label: "--> ",font:{align:"middle"},length:500},
+  { from: 15, to:16 , label: "--> ",font:{align:"middle"},length:500},
+
+  //Santa Anita=14
+  { from: 14, to:13 , label: "--> ",font:{align:"middle"},length:500},
+  { from: 13, to:14 , label: "--> ",font:{align:"middle"},length:500},
+  { from: 14, to:15 , label: "--> ",font:{align:"middle"},length:500},
+  { from: 15, to:14 , label: "--> ",font:{align:"middle"},length:500},
+
+  //SAN LUIS=44
+  { from: 44, to:13 , label: "--> ",font:{align:"middle"},length:500},
+  { from: 13, to:44 , label: "--> ",font:{align:"middle"},length:500},
+  { from: 44, to:26 , label: "--> ",font:{align:"middle"},length:500},
+  { from: 26, to:44 , label: "--> ",font:{align:"middle"},length:500},
+  { from: 44, to:15 , label: "--> ",font:{align:"middle"},length:500},
+  { from: 15, to:44 , label: "--> ",font:{align:"middle"},length:500},
+  { from: 44, to:22 , label: "--> ",font:{align:"middle"},length:500},
+  { from: 22, to:44 , label: "--> ",font:{align:"middle"},length:500},
+]
 
   // create a network
   var container = document.getElementById("mynetwork");
@@ -543,12 +630,12 @@ function draw1() {
       width: WIDTH_SCALE * 6,
       borderWidth: 2,
       borderWidthSelected: 8,
-      size: 100,
+      size: 200,
       color: {
         border: "white",
-        background: "black",
+        background: "red",
         highlight: {
-          border: "black",
+          border: "yellow",
           background: "white",
         },
         hover: {
@@ -562,13 +649,16 @@ function draw1() {
       },
     },
     edges: {
-      color: "lightgray",
+      color: "#FF90BB",
     },
   };
   network = new vis.Network(container, data, options);
 }
-
 window.addEventListener("load", () => {
   draw1();
 });
 
+function redirectToAnotherPage() {
+  // Redirigir a la página deseada
+  window.location.href = "YourRoute.html";
+}
