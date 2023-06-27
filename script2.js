@@ -662,7 +662,6 @@ function encontrarCamino(inicio, destino) {
 }
 const btnObtenerSeleccion = document.getElementById('btnEnviar');
 btnObtenerSeleccion.addEventListener('click', obtenerSeleccion);
-
 function obtenerSeleccion() {
   const selectDistrito1 = document.getElementById('distrito1');
   const selectDistrito2 = document.getElementById('distrito2');
@@ -687,6 +686,7 @@ function obtenerSeleccion() {
     if (caminoEncontrado) {
       mensaje.textContent = `CAMINO ENCONTRADO`;
       drawRoute(caminoEncontrado)
+
       // Realiza las acciones adicionales que desees con el camino encontrado
     } else {
       console.log('No se encontró un camino válido.');
