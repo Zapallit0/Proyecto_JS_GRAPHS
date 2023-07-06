@@ -64,10 +64,9 @@ main {
 .titulo{
     width:100vw;
     display: flex;
-    justify-content: flex-end;
-    background-color: transparent;
+    justify-content: center;
     font-family: 'Kablammo', cursive;
-    background-color: #FFF6F4;
+    
 }
 .titulo h1 {
     color: #333333;
@@ -78,9 +77,9 @@ main {
 #mynetwork {
     width: 60vw;
     height: 60vh;
-
     border-radius: 25px;
     background-color: #68829E;
+    scroll-behavior: smooth;
 }
 @media(max-width:1000px){
     header h1{
@@ -92,7 +91,7 @@ main {
     header h1{
         font-size:30px;
     }
-}  
+}
 .Rutas button{
     margin: 30px;
     display: inline-block;
@@ -116,14 +115,35 @@ main {
     width: 110%;
     display: flex;
     align-items: flex-start;
+    align-items: center;
     justify-content:center;
     background-color: #7DA3A1;
+    padding: 100px;
 }
   
 .parrafo {
-    margin-right: 20px;
+    margin-right: 100px;
+    width: 35vw;
+    background-color: white;
+    border-radius: 25px;
+    padding: 50px;
+
 }
   
+.parrafo h1{
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 40px;
+    text-transform: uppercase;
+    font-weight: bold;
+    margin: 0px;
+}
+.parrafo h4{
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 20px;
+    margin:0px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
 .imagen {
     margin-top: 20px;
 }

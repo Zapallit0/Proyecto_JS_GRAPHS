@@ -662,13 +662,17 @@ function encontrarCamino(inicio, destino) {
 }
 const btnObtenerSeleccion = document.getElementById('btnEnviar');
 btnObtenerSeleccion.addEventListener('click', obtenerSeleccion);
+
+
 function obtenerSeleccion() {
   const selectDistrito1 = document.getElementById('distrito1');
   const selectDistrito2 = document.getElementById('distrito2');
   const mensaje = document.getElementById('mensaje');
+  const direccionesL=document.getElementById('sidebar')
   const valorSeleccionado1 = selectDistrito1.value;
   const valorSeleccionado2 = selectDistrito2.value;
-
+  const BtnDirecciones=document.getElementById('btn_direcciones');
+  const mostrarMapa=document.getElementById('map')
 
   if (valorSeleccionado1 == valorSeleccionado2) {
     mensaje.textContent = 'Selecciona distritos diferentes.';
@@ -677,13 +681,16 @@ function obtenerSeleccion() {
     mensaje.textContent = 'Debes seleccionar 2 distritos.';
     mensaje.style.display = 'block';
   } else {
+    mostrarMapa.style.display="block";
+    BtnDirecciones.style.display = 'block';
+    direccionesL.style.display = 'block';
 
     const inicio = parseInt(valorSeleccionado1);
     const destino = parseInt(valorSeleccionado2);
 
     const caminoEncontrado = encontrarCamino(inicio, destino);
-    console.log(caminoEncontrado);
     if (caminoEncontrado) {
+      window.initMap = initMap;
       mensaje.textContent = `CAMINO ENCONTRADO`;
       drawRoute(caminoEncontrado)
 
@@ -975,3 +982,75 @@ function draw1(nodoRuta) {
 window.addEventListener("load", () => {
   draw1();
 });
+
+function initMap() {
+  const directionsRenderer = new google.maps.DirectionsRenderer();
+  const directionsService = new google.maps.DirectionsService();
+  const map = new google.maps.Map(document.getElementById("map"), {
+    zoom: 12,
+    //-12.042084062782227, -77.04545737166644=LIMA
+    center: { lat: -12.042084062782227, lng: -77.04545737166644 },
+    disableDefaultUI: true,
+  });
+
+  directionsRenderer.setMap(map);
+  directionsRenderer.setPanel(document.getElementById("sidebar"));
+
+  const control = document.getElementById("floating-panel");
+
+  map.controls[google.maps.ControlPosition.TOP_CENTER].push(control);
+
+
+  calculateAndDisplayRoute(directionsService, directionsRenderer);
+
+
+  document
+    .getElementById("distrito1")
+  document
+    .getElementById("distrito2")
+}
+
+function calculateAndDisplayRoute(directionsService, directionsRenderer) {
+  var selectDistrict1 = document.getElementById("distrito1");
+  var selectDistrict2 = document.getElementById("distrito2");
+  var distritoNombre1=""
+  var distritoNombre2=""
+  
+  selectDistrict1.addEventListener("change", function() {
+    var selectedOption1 = selectDistrict1.options[selectDistrict1.selectedIndex];
+    distritoNombre1 = selectedOption1.text;
+  
+  console.log(distritoNombre1); // Mostrar el nombre del distrito en la consola
+    buscarRuta();
+  });
+
+  selectDistrict2.addEventListener("change", function() {
+    var selectedOption2 = selectDistrict2.options[selectDistrict2.selectedIndex];
+    distritoNombre2 = selectedOption2.text;
+    buscarRuta();
+    console.log(distritoNombre2); // Mostrar el nombre del distrito en la consola
+
+  });
+
+  function buscarRuta() {
+    if (distritoNombre1 && distritoNombre2) {
+      const selectedMode = "DRIVING";
+      const start1 = distritoNombre1;
+      const end1 = distritoNombre2;
+      directionsService
+        .route({
+          origin: start1,
+          destination: end1,
+          travelMode: google.maps.TravelMode[selectedMode],
+        })
+        .then((response) => {
+          directionsRenderer.setDirections(response);
+        })
+        .catch((e) =>
+          window.alert("Directions request failed due to " + status)
+        );
+    }
+  }
+}
+
+

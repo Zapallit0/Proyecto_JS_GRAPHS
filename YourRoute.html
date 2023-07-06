@@ -6,8 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles2.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Kablammo&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kablammo&display=swap" rel="stylesheet">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
     <title>Document</title>
 </head>
 <body>
@@ -119,7 +120,20 @@
     </form>
       <div id="rutaNetwork">UwUuu</div>
   </div>
-  <button onclick="window.location.href = 'index.html';" class="boton-volver">Volver a la página principal</button>
-  <script src="script2.js"></script>
+  <div class="botones_1" >
+    <button onclick="window.location.href = 'index.html';" class="boton-volver">Volver a la página principal</button>
+    <button id="btn_direcciones" class="boton-direcciones" onclick="window.location.href = '#map'" hidden>Mostrar direcciones</button>
+  </div>
+  <div class="direcciones_map">
+    <div id="sidebar" hidden></div>
+    <div id="map" class="map_direcciones" hidden data-aos="fade-down">UWUUUU</div>
+  </div>
+  
+  <script src="script2.js">
+  </script>
+  <script
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBcl7KWGMgZD5kv16PCuqzHLpBOiZkC-xQ&callback=initMap&v=weekly"
+  defer
+></script>
 </body>
 </html>
